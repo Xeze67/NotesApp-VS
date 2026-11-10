@@ -9,9 +9,10 @@ public class DatabaseService
 {
     private readonly string _connectionString;
 
-    public DatabaseService(string dbPath = "notes_v2.db")
+    public DatabaseService(string? dbPath = null)
     {
-        _connectionString = $"Data Source={dbPath}";
+        string resolvedPath = dbPath ?? Path.Combine(AppContext.BaseDirectory, "notes_v2.db");
+        _connectionString = $"Data Source={resolvedPath}";
         InitializeDatabase();
     }
 

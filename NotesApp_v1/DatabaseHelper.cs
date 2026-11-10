@@ -10,9 +10,10 @@ public class DatabaseHelper
 {
     private readonly string _connectionString;
 
-    public DatabaseHelper(string dbPath = "notes_v1.db")
+    public DatabaseHelper(string? dbPath = null)
     {
-        _connectionString = $"Data Source={dbPath}";
+        string resolvedPath = dbPath ?? Path.Combine(AppContext.BaseDirectory, "notes_v1.db");
+        _connectionString = $"Data Source={resolvedPath}";
         InitializeDatabase();
     }
 
